@@ -33,8 +33,7 @@ const dbListen = (p,cb) => { const r=dbRef(p); onValue(r,s=>cb(s.val())); return
 // ══════════════════════════════════════════════════════════
 //  AI 出題的預設題庫（Livalo/Livazebe、Canaglu、VAFSEO）
 // ══════════════════════════════════════════════════════════
-const DEFAULT_QUESTIONS = [
-  // ── Livalo / Livazebe ──
+const QUESTIONS_LIVALO = [
   { question:"Livalo（Pitavastatin）的主要適應症為何？",
     options:["降低三酸甘油酯","降低LDL膽固醇、治療高血脂","升高HDL膽固醇","控制空腹血糖"],
     correct:1, time:20 },
@@ -56,8 +55,8 @@ const DEFAULT_QUESTIONS = [
   { question:"Pitavastatin代謝途徑主要為何，與其他Statin的差異？",
     options:["主要經CYP3A4代謝，藥物交互作用多","主要經CYP2C9代謝","極少經CYP代謝，主要走葡萄糖醛酸化途徑，藥物交互作用少","完全由腎臟直接排除"],
     correct:2, time:25 },
-
-  // ── Canaglu（Canagliflozin）──
+];
+const QUESTIONS_CANAGLU = [
   { question:"Canaglu（Canagliflozin）的作用機制是？",
     options:["促進胰島素分泌","抑制腎臟近端腎小管SGLT2，增加尿糖排出","活化GLP-1受體","抑制DPP-4酵素"],
     correct:1, time:20 },
@@ -79,8 +78,8 @@ const DEFAULT_QUESTIONS = [
   { question:"CREDENCE試驗證實Canagliflozin對哪類患者有腎臟保護效益？",
     options:["1型糖尿病患者","2型糖尿病合併糖尿病腎病變（DKD）患者","非糖尿病的慢性腎病患者","急性腎損傷患者"],
     correct:1, time:25 },
-
-  // ── VAFSEO 300mg（Vadadustat）──
+];
+const QUESTIONS_VAFSEO = [
   { question:"VAFSEO（Vadadustat）300mg的適應症為何？",
     options:["治療2型糖尿病","治療已透析至少3個月的慢性腎病成人貧血","治療慢性心臟衰竭","治療骨髓增生異常症候群"],
     correct:1, time:20 },
@@ -250,9 +249,14 @@ function renderQuestionList(){
   });
 }
 window.deleteQuestion=function(e,i){e.stopPropagation();questions.splice(i,1);renderQuestionList();};
-window.loadDefaultQuestions=function(){
-  questions=JSON.parse(JSON.stringify(DEFAULT_QUESTIONS));
-  renderQuestionList(); toast('🤖 已載入 AI 出題：'+questions.length+' 道藥品題目');
+window.loadProductQuestions=function(product){
+  const map={livalo:QUESTIONS_LIVALO,canaglu:QUESTIONS_CANAGLU,vafseo:QUESTIONS_VAFSEO};
+  const labels={livalo:'Livalo & Livazebe（7題）',canaglu:'Canaglu（7題）',vafseo:'VAFSEO 300mg（7題）'};
+  questions=JSON.parse(JSON.stringify(map[product]));
+  renderQuestionList();
+  // highlight active btn
+  document.querySelectorAll('.product-btn').forEach(b=>b.classList.toggle('active-product',b.dataset.p===product));
+  toast('🤖 已載入 '+labels[product]);
 };
 window.saveQuestionsLocally=saveQuestionsLocally;
 window.loadSavedQuestions=loadSavedQuestions;
@@ -750,7 +754,15 @@ init();
     </div>
     <hr class="separator">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-      <button class="btn btn-secondary" onclick="loadDefaultQuestions()">🤖 載入 AI 出題（Livalo、Canaglu、VAFSEO）</button>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:0.8rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px">🤖 AI 出題 — 選擇產品載入</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-secondary product-btn" data-p="livalo" onclick="loadProductQuestions('livalo')" style="border-color:rgba(79,209,245,0.5)">💊 Livalo &amp; Livazebe</button>
+          <button class="btn btn-secondary product-btn" data-p="canaglu" onclick="loadProductQuestions('canaglu')" style="border-color:rgba(46,184,114,0.5)">💉 Canaglu</button>
+          <button class="btn btn-secondary product-btn" data-p="vafseo" onclick="loadProductQuestions('vafseo')" style="border-color:rgba(245,166,35,0.5)">🩺 VAFSEO 300mg</button>
+        </div>
+        <p style="font-size:0.75rem;color:var(--text-muted);margin-top:2px">每個產品各 7 題，可搭配手動新增題目混用</p>
+      </div>
     </div>
   </div>
 
@@ -1039,6 +1051,7 @@ label{display:block;font-size:.8rem;font-weight:800;letter-spacing:1.5px;text-tr
 .waiting-dot{width:10px;height:10px;border-radius:50%;background:var(--primary);animation:waitDot 1.2s ease-in-out infinite}
 .waiting-dot:nth-child(2){animation-delay:.2s}.waiting-dot:nth-child(3){animation-delay:.4s}
 @keyframes waitDot{0%,100%{opacity:.2;transform:translateY(0)}50%{opacity:1;transform:translateY(-8px)}}
+.product-btn.active-product{border-color:var(--primary)!important;background:rgba(124,109,250,0.2)!important;color:var(--cyan)!important}
 .confetti-piece{position:fixed;width:10px;height:12px;border-radius:2px;top:-20px;animation:confettiFall linear forwards;z-index:999;pointer-events:none}
 @keyframes confettiFall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
 </style>
