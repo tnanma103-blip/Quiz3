@@ -106,7 +106,7 @@ const QUESTIONS_VAFSEO = [
 // ══════════════════════════════════════════════════════════
 //  App state
 // ══════════════════════════════════════════════════════════
-const SHAPES = ['㊎','㊍','㊌','㊋'];
+const SHAPES = ['⬟','▲','●','❤'];
 const AVATAR_COLORS = ['#7c6dfa','#1a9bfc','#f5a623','#2eb872','#e8344a','#ff7eb6','#4fd1f5'];
 const SAVED_KEY = 'quizgame_saved_questions'; // localStorage key for pre-saved questions
 
@@ -634,10 +634,10 @@ function showPlayerResults(qIndex,players,answers){
     banner.innerHTML=`<div style="font-size:2.3rem">⌛</div><div>未作答</div>`;
   }else if(isCorrect){
     banner.style.background='linear-gradient(135deg,#2eb872,#22965b)';
-    banner.innerHTML=`<div style="font-size:2.3rem">✅</div><div style="font-family:'Noto Sans HK Black','微軟正黑體',sans-serif">答對了！ +${myLastScore}</div>`;
+    banner.innerHTML=`<div style="font-size:1.6rem">✅</div><div style="font-family:'Noto Sans HK Black','微軟正黑體',sans-serif">答對了！ +${myLastScore}</div>`;
   }else{
     banner.style.background='linear-gradient(135deg,#e8344a,#c02336)';
-    banner.innerHTML=`<div style="font-size:2.3rem">❌</div><div style="font-family:'Noto Sans HK Black','微軟正黑體',sans-serif">答錯了！正確答案：${q.options[q.correct]}</div>`;
+    banner.innerHTML=`<div style="font-size:1.6rem">❌</div><div style="font-family:'Noto Sans HK Black','微軟正黑體',sans-serif">答錯了！正確答案：${q.options[q.correct]}</div>`;
   }
   const sorted=Object.entries(players).map(([name,d])=>({name,totalScore:d.totalScore||0,score:d.score||0})).sort((a,b)=>b.totalScore-a.totalScore);
   const ul=document.getElementById('player-leaderboard'); ul.innerHTML='';
@@ -1003,7 +1003,7 @@ label{display:block;font-size:.8rem;font-weight:800;letter-spacing:1.5px;text-tr
 .qr-area{background:#fff;border-radius:14px;padding:14px;display:inline-block;margin:12px auto}#qrcode2 canvas,#qrcode2 img{display:block}
 .join-url{font-size:.75rem;color:var(--text-muted);word-break:break-all;margin-top:8px;text-align:center}
 .players-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-.player-chip{background:var(--surface2);border:2px solid var(--border);border-radius:50px;padding:8px 18px;font-weight:800;font-size:.9rem;display:flex;align-items:center;gap:8px;animation:popIn .3s ease}
+.player-chip{background:var(--surface2);border:2px solid var(--border);border-radius:50px;padding:8px 18px;font-weight:800;font-size:1.4rem;display:flex;align-items:center;gap:8px;animation:popIn .3s ease}
 @keyframes popIn{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
 .player-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:900;color:#fff}
 .timer-wrap{display:flex;align-items:center;justify-content:center;margin-bottom:20px}.timer-ring{position:relative;width:80px;height:80px}.timer-ring svg{transform:rotate(-90deg)}
@@ -1014,9 +1014,9 @@ label{display:block;font-size:.8rem;font-weight:800;letter-spacing:1.5px;text-tr
 .question-box{background:var(--surface2);border-radius:var(--radius);padding:28px;text-align:center;font-family:'Noto Sans HK Black','微軟正黑體',sans-serif;font-size:clamp(1.2rem,3vw,1.7rem);line-height:1.4;margin-bottom:20px;border:1px solid var(--border);width:100%}
 .answered-bar-wrap{background:var(--surface2);border-radius:50px;height:8px;width:100%;overflow:hidden;margin:8px 0}.answered-bar{height:100%;background:linear-gradient(90deg,var(--primary),var(--cyan));border-radius:50px;transition:width .5s ease}.answered-count{font-size:.8rem;color:var(--text-muted);font-weight:700;text-align:center}
 .answers-host{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%}
-.ans-btn-host{border-radius:14px;padding:18px 14px;font-family:'Noto Sans HK Black','微軟正黑體',sans-serif;font-size:1.05rem;color:#fff;display:flex;align-items:center;gap:10px;border:none}
+.ans-btn-host{border-radius:14px;padding:18px 14px;font-family:'Noto Sans HK Black','微軟正黑體',sans-serif;font-size:1.4rem;color:#fff;display:flex;align-items:center;gap:10px;border:none}
 .ans-btn-host[data-opt="0"]{background:linear-gradient(135deg,var(--ans-a),var(--ans-a-dark))}.ans-btn-host[data-opt="1"]{background:linear-gradient(135deg,var(--ans-b),var(--ans-b-dark))}.ans-btn-host[data-opt="2"]{background:linear-gradient(135deg,var(--ans-c),var(--ans-c-dark))}.ans-btn-host[data-opt="3"]{background:linear-gradient(135deg,var(--ans-d),var(--ans-d-dark))}
-.ans-shape{width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1rem}
+.ans-shape{width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
 .answers-player{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%}
 .ans-btn-player{border-radius:16px;padding:24px 14px;font-family:'Noto Sans HK Black','微軟正黑體',sans-serif;font-size:1.4rem;color:#fff;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:10px;transition:all .15s ease;position:relative;overflow:hidden}.ans-btn-player:active{transform:scale(.95)}
 .ans-btn-player[data-opt="0"]{background:linear-gradient(135deg,var(--ans-a),var(--ans-a-dark));box-shadow:0 6px 20px rgba(232,52,74,.4)}.ans-btn-player[data-opt="1"]{background:linear-gradient(135deg,var(--ans-b),var(--ans-b-dark));box-shadow:0 6px 20px rgba(26,155,252,.4)}.ans-btn-player[data-opt="2"]{background:linear-gradient(135deg,var(--ans-c),var(--ans-c-dark));box-shadow:0 6px 20px rgba(245,166,35,.4)}.ans-btn-player[data-opt="3"]{background:linear-gradient(135deg,var(--ans-d),var(--ans-d-dark));box-shadow:0 6px 20px rgba(46,184,114,.4)}
