@@ -243,8 +243,7 @@ function renderQuestionList(){
     const li=document.createElement('li'); li.className='q-item';
     li.innerHTML=`<span class="q-num">${i+1}</span>
       <span class="q-text">${q.question.length>50?q.question.slice(0,50)+'…':q.question}</span>
-      <span style="font-size:0.75rem;font-weight:900;padding:2px 8px;border-radius:20px;background:${ansColors[q.correct]};color:#fff;flex-shrink:0">✓ ${ansLabels[q.correct]}</span>
-      <span style="font-size:0.75rem;color:var(--text-muted);margin-right:4px;flex-shrink:0">${q.time}秒</span>
+      <span style="font-size:0.75rem;color:var(--text-muted);margin-right:4px">${q.time}秒</span>
       <button class="q-del" onclick="deleteQuestion(event,${i})">✕</button>`;
     ul.appendChild(li);
   });
