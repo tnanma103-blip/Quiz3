@@ -106,7 +106,7 @@ const QUESTIONS_VAFSEO = [
 // ══════════════════════════════════════════════════════════
 //  App state
 // ══════════════════════════════════════════════════════════
-const SHAPES = ['⬟','▲','♣︎','❤'];
+const SHAPES = ['⬟','▲','♣︎','⏺︎'];
 const AVATAR_COLORS = ['#7c6dfa','#1a9bfc','#f5a623','#2eb872','#e8344a','#ff7eb6','#4fd1f5'];
 const SAVED_KEY = 'quizgame_saved_questions'; // localStorage key for pre-saved questions
 
@@ -209,7 +209,7 @@ function buildEditorOptions(){
     wrap.id=`opt-wrap-${i}`; wrap.onclick=()=>window.setCorrect(i);
     wrap.innerHTML=`<span class="opt-badge ${['a','b','c','d'][i]}">${lbl}</span>
       <div style="flex:1"><input type="text" id="opt-input-${i}" placeholder="選項 ${lbl}..." onclick="event.stopPropagation()">
-      <div class="correct-label">✓ 正確答案</div></div>`;
+      <div class="correct-label">✓ </div></div>`;
     grid.appendChild(wrap);
   });
   document.querySelectorAll('.time-btn').forEach(btn=>{
