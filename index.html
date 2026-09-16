@@ -673,7 +673,7 @@ function showPlayerFinal(players){
     if(isMe) li.style.border='2px solid var(--primary)';
     li.innerHTML=`<div class="lb-rank ${i===0?'top-1':i===1?'top-2':i===2?'top-3':''}">${rankLabel(i+1)}</div>
       <div class="player-avatar" style="background:${avatarColor(p.name)};flex-shrink:0">${initials(p.name)}</div>
-      <div class="lb-name">${p.name}${isMe?' <span style="font-size:0.7rem;color:var(--primary)">(我)</span>':''}</div>
+      <div class="lb-name">${p.name}${isMe?' <span style="font-size:1.2rem;color:var(--primary)">(我)</span>':''}</div>
       <div class="lb-score">${p.totalScore.toLocaleString()}</div>`;
     ul.appendChild(li);
   });
