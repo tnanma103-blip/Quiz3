@@ -240,7 +240,7 @@ window.saveCurrentQuestion=function(){
 function renderQuestionList(){
   const ul=document.getElementById('q-list'); ul.innerHTML='';
   questions.forEach((q,i)=>{
-    const li=document.createElement('li'); li.className='q-item';
+  const li=document.createElement('li'); li.className='q-item';
     li.innerHTML=`<span class="q-num">${i+1}</span>
       <span class="q-text">${q.question.length>50?q.question.slice(0,50)+'…':q.question}</span>
       <span style="font-size:0.75rem;color:var(--text-muted);margin-right:4px">${q.time}秒</span>
