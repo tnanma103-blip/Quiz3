@@ -634,10 +634,10 @@ function showPlayerResults(qIndex,players,answers){
     banner.innerHTML=`<div style="font-size:2.3rem">⌛</div><div>未作答</div>`;
   }else if(isCorrect){
     banner.style.background='linear-gradient(135deg,#2eb872,#22965b)';
-    banner.innerHTML=`<div style="font-size:3rem">✅</div><div style="font-family:'Noto Sans HK Black','微軟正黑體',sans-serif">答對了！ +${myLastScore}</div>`;
+    banner.innerHTML=`<div style="font-size:1.8rem">✅</div><div style="font-family:'Noto Sans HK Black','微軟正黑體',sans-serif,font-size:1.5rem">答對了！ +${myLastScore}</div>`;
   }else{
     banner.style.background='linear-gradient(135deg,#ff00dd,#c02336)';
-    banner.innerHTML=`<div style="font-size:3rem">❌</div><div style="font-family:'Noto Sans HK Black','微軟正黑體',sans-serif">答錯了！正確答案：${q.options[q.correct]}</div>`;
+    banner.innerHTML=`<div style="font-size:1.8rem">✖︎</div><div style="font-family:'Noto Sans HK Black','微軟正黑體',sans-serif,font-size:1.5rem">答錯了！正確答案：${q.options[q.correct]}</div>`;
   }
   const sorted=Object.entries(players).map(([name,d])=>({name,totalScore:d.totalScore||0,score:d.score||0})).sort((a,b)=>b.totalScore-a.totalScore);
   const ul=document.getElementById('player-leaderboard'); ul.innerHTML='';
