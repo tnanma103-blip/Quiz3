@@ -409,7 +409,7 @@ window.endQuestion=async function(){
 function showHostResults(q,players){
   document.getElementById('hr-correct-ans').innerHTML=
     `<div style="font-size:0.78rem;color:rgba(0,176,240,0.7);font-weight:700;letter-spacing:1px;margin-bottom:6px">本題題目</div>
-     <div style="font-family:'Fredoka One',cursive;font-size:1.15rem;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.2)">${q.question}</div>
+     <div style="font-family:'Fredoka One',cursive;font-size:1.55rem;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.2)">${q.question}</div>
      <div style="font-size:0.78rem;color:rgba(255,255,255,0.7);margin-bottom:4px;font-weight:700;letter-spacing:1px">✅ 正確答案</div>
      <div style="font-family:'Fredoka One',cursive;font-size:1.4rem">${SHAPES[q.correct]} ${q.options[q.correct]}</div>`;
   const sorted=Object.entries(players).map(([name,d])=>({name,totalScore:d.totalScore||0,score:d.score||0})).sort((a,b)=>b.totalScore-a.totalScore);
