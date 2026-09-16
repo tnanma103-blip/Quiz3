@@ -417,7 +417,7 @@ function showHostResults(q,players){
   sorted.slice(0,8).forEach((p,i)=>{
     const li=document.createElement('li'); li.className='lb-item'; li.style.animationDelay=(i*0.08)+'s';
     li.innerHTML=`<div class="lb-rank ${i===0?'top-1':i===1?'top-2':i===2?'top-3':''}">${rankLabel(i+1)}</div>
-      <div class="player-avatar" style="background:${avatarColor(#F5A623)};flex-shrink:0">${initials(p.name)}</div>
+      <div class="player-avatar" style="background:${avatarColor(p.name)};flex-shrink:0">${initials(p.name)}</div>
       <div class="lb-name">${p.name}</div><div class="lb-score">${p.totalScore.toLocaleString()}</div>
       ${p.score>0?`<div class="lb-delta">+${p.score}</div>`:''}`;
     ul.appendChild(li);
