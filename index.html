@@ -631,13 +631,13 @@ function showPlayerResults(qIndex,players,answers){
   const banner=document.getElementById('pr-feedback-banner');
   if(!myAns){
     banner.style.background='rgba(255,255,255,0.08)';
-    banner.innerHTML=`<div style="font-size:1.3rem">⌛</div><div>未作答</div>`;
+    banner.innerHTML=`<div style="font-size:2.3rem">⌛</div><div>未作答</div>`;
   }else if(isCorrect){
     banner.style.background='linear-gradient(135deg,#2eb872,#22965b)';
-    banner.innerHTML=`<div style="font-size:1.3rem">✅</div><div style="font-family:'Noto Sans HK Black','微軟正黑體',sans-serif">答對了！ +${myLastScore}</div>`;
+    banner.innerHTML=`<div style="font-size:2.3rem">✅</div><div style="font-family:'Noto Sans HK Black','微軟正黑體',sans-serif">答對了！ +${myLastScore}</div>`;
   }else{
     banner.style.background='linear-gradient(135deg,#e8344a,#c02336)';
-    banner.innerHTML=`<div style="font-size:1.3rem">❌</div><div style="font-family:'Noto Sans HK Black','微軟正黑體',sans-serif">答錯了！正確答案：${q.options[q.correct]}</div>`;
+    banner.innerHTML=`<div style="font-size:2.3rem">❌</div><div style="font-family:'Noto Sans HK Black','微軟正黑體',sans-serif">答錯了！正確答案：${q.options[q.correct]}</div>`;
   }
   const sorted=Object.entries(players).map(([name,d])=>({name,totalScore:d.totalScore||0,score:d.score||0})).sort((a,b)=>b.totalScore-a.totalScore);
   const ul=document.getElementById('player-leaderboard'); ul.innerHTML='';
@@ -1018,9 +1018,9 @@ label{display:block;font-size:.8rem;font-weight:800;letter-spacing:1.5px;text-tr
 .ans-btn-host[data-opt="0"]{background:linear-gradient(135deg,var(--ans-a),var(--ans-a-dark))}.ans-btn-host[data-opt="1"]{background:linear-gradient(135deg,var(--ans-b),var(--ans-b-dark))}.ans-btn-host[data-opt="2"]{background:linear-gradient(135deg,var(--ans-c),var(--ans-c-dark))}.ans-btn-host[data-opt="3"]{background:linear-gradient(135deg,var(--ans-d),var(--ans-d-dark))}
 .ans-shape{width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1rem}
 .answers-player{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%}
-.ans-btn-player{border-radius:16px;padding:24px 14px;font-family:'Noto Sans HK Black','微軟正黑體',sans-serif;font-size:1.05rem;color:#fff;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:10px;transition:all .15s ease;position:relative;overflow:hidden}.ans-btn-player:active{transform:scale(.95)}
+.ans-btn-player{border-radius:16px;padding:24px 14px;font-family:'Noto Sans HK Black','微軟正黑體',sans-serif;font-size:1.4rem;color:#fff;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:10px;transition:all .15s ease;position:relative;overflow:hidden}.ans-btn-player:active{transform:scale(.95)}
 .ans-btn-player[data-opt="0"]{background:linear-gradient(135deg,var(--ans-a),var(--ans-a-dark));box-shadow:0 6px 20px rgba(232,52,74,.4)}.ans-btn-player[data-opt="1"]{background:linear-gradient(135deg,var(--ans-b),var(--ans-b-dark));box-shadow:0 6px 20px rgba(26,155,252,.4)}.ans-btn-player[data-opt="2"]{background:linear-gradient(135deg,var(--ans-c),var(--ans-c-dark));box-shadow:0 6px 20px rgba(245,166,35,.4)}.ans-btn-player[data-opt="3"]{background:linear-gradient(135deg,var(--ans-d),var(--ans-d-dark));box-shadow:0 6px 20px rgba(46,184,114,.4)}
-.ans-btn-player .shape-icon{font-size:2rem}.ans-btn-player.disabled{opacity:.35;pointer-events:none}.ans-btn-player.selected{transform:scale(1.04)}.ans-btn-player.selected::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.25)}
+.ans-btn-player .shape-icon{font-size:3rem}.ans-btn-player.disabled{opacity:.35;pointer-events:none}.ans-btn-player.selected{transform:scale(1.5)}.ans-btn-player.selected::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.25)}
 .leaderboard{list-style:none;display:flex;flex-direction:column;gap:10px;width:100%}
 .lb-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 18px;display:flex;align-items:center;gap:14px;animation:slideIn .4s ease both}
 @keyframes slideIn{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
